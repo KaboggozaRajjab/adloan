@@ -1,0 +1,1 @@
+<?php $link = mysqli_connect('localhost','root','','adloan') or die('Unable to Connect to Database'); ?>
