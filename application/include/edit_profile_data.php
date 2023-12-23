@@ -437,14 +437,14 @@
 					 <div class="form-group">
                   <label for="" class="col-sm-2 control-label" style="color:#009900">Username</label>
                   <div class="col-sm-10">
-                  <input name="user" type="text" class="form-control" value="<?php echo $row ['username'];?>" required readonly>
+                  <input name="user" type="text" class="form-control" value="<?php echo $row ['username'];?>">
                   </div>
                   </div>
 				  
 				   <div class="form-group">
                   <label for="" class="col-sm-2 control-label" style="color:#009900">Password</label>
                   <div class="col-sm-10">
-                  <input name="password" type="text" class="form-control" value="" required readonly>
+                  <input name="password" type="text" class="form-control" value="">
                   </div>
                   </div>
 				  

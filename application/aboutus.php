@@ -214,7 +214,7 @@ while($row = mysqli_fetch_assoc($call)){
         </div>
         <div class="pull-left info">
           <p><?php echo $row ['username'] ;?></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online User</a>
 		  <?php }}?>
         </div>
       </div>
