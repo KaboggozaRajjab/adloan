@@ -2,8 +2,11 @@
 <div class="wrapper">
 
 <?php include("include/top_bar.php"); ?>
+
   <!-- Left side column. contains the logo and sidebar -->
 <?php include("include/side_bar.php"); ?>
+
+
   <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     
