@@ -1,23 +1,24 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.9
--- http://www.phpmyadmin.net
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 29, 2018 at 12:56 AM
--- Server version: 5.5.20
--- PHP Version: 5.3.9
+-- Host: 127.0.0.1
+-- Generation Time: Dec 28, 2023 at 02:18 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `loan`
+-- Database: `adloan`
 --
 
 -- --------------------------------------------------------
@@ -26,11 +27,10 @@ SET time_zone = "+00:00";
 -- Table structure for table `aboutus`
 --
 
-CREATE TABLE IF NOT EXISTS `aboutus` (
-  `abid` int(11) NOT NULL AUTO_INCREMENT,
-  `about` text NOT NULL,
-  PRIMARY KEY (`abid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+CREATE TABLE `aboutus` (
+  `abid` int(11) NOT NULL,
+  `about` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -38,14 +38,13 @@ CREATE TABLE IF NOT EXISTS `aboutus` (
 -- Table structure for table `additional_fees`
 --
 
-CREATE TABLE IF NOT EXISTS `additional_fees` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `additional_fees` (
+  `id` int(20) NOT NULL,
   `get_id` varchar(200) NOT NULL,
   `tid` varchar(200) NOT NULL,
   `fee` varchar(200) NOT NULL,
-  `Amount` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+  `Amount` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `additional_fees`
@@ -57,7 +56,8 @@ INSERT INTO `additional_fees` (`id`, `get_id`, `tid`, `fee`, `Amount`) VALUES
 (22, '3', 'Loan=21319580', '', ''),
 (23, '5', 'Loan=21319580', 'Late Payment', '2000'),
 (26, '6', 'Loan=21319580', 'Late Payment', '200'),
-(27, '6', 'Loan=21319580', 'Fine', '128');
+(27, '6', 'Loan=21319580', 'Fine', '128'),
+(28, '7', 'Loan=21319580', '', '');
 
 -- --------------------------------------------------------
 
@@ -65,14 +65,13 @@ INSERT INTO `additional_fees` (`id`, `get_id`, `tid`, `fee`, `Amount`) VALUES
 -- Table structure for table `attachment`
 --
 
-CREATE TABLE IF NOT EXISTS `attachment` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `attachment` (
+  `id` int(20) NOT NULL,
   `get_id` varchar(200) NOT NULL,
   `tid` varchar(200) NOT NULL,
   `attached_file` text NOT NULL,
-  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `date_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attachment`
@@ -89,14 +88,13 @@ INSERT INTO `attachment` (`id`, `get_id`, `tid`, `attached_file`, `date_time`) V
 -- Table structure for table `backup`
 --
 
-CREATE TABLE IF NOT EXISTS `backup` (
-  `id` int(200) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `backup` (
+  `id` int(200) NOT NULL,
   `tracking_id` varchar(200) NOT NULL,
   `amount` varchar(200) NOT NULL,
   `address` text NOT NULL,
-  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+  `date_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `backup`
@@ -114,11 +112,10 @@ INSERT INTO `backup` (`id`, `tracking_id`, `amount`, `address`, `date_time`) VAL
 -- Table structure for table `banner`
 --
 
-CREATE TABLE IF NOT EXISTS `banner` (
-  `banaid` int(11) NOT NULL AUTO_INCREMENT,
-  `bannar` text NOT NULL,
-  PRIMARY KEY (`banaid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+CREATE TABLE `banner` (
+  `banaid` int(11) NOT NULL,
+  `bannar` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `banner`
@@ -133,14 +130,13 @@ INSERT INTO `banner` (`banaid`, `bannar`) VALUES
 -- Table structure for table `battachment`
 --
 
-CREATE TABLE IF NOT EXISTS `battachment` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `battachment` (
+  `id` int(20) NOT NULL,
   `get_id` varchar(200) NOT NULL,
   `tid` varchar(200) NOT NULL,
   `attached_file` text NOT NULL,
-  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `date_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `battachment`
@@ -159,8 +155,8 @@ INSERT INTO `battachment` (`id`, `get_id`, `tid`, `attached_file`, `date_time`) 
 -- Table structure for table `borrowers`
 --
 
-CREATE TABLE IF NOT EXISTS `borrowers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `borrowers` (
+  `id` int(11) NOT NULL,
   `fname` varchar(200) NOT NULL,
   `lname` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
@@ -175,17 +171,17 @@ CREATE TABLE IF NOT EXISTS `borrowers` (
   `account` varchar(200) NOT NULL,
   `balance` varchar(200) NOT NULL,
   `image` varchar(200) NOT NULL,
-  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `date_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `borrowers`
 --
 
 INSERT INTO `borrowers` (`id`, `fname`, `lname`, `email`, `phone`, `addrs1`, `addrs2`, `city`, `state`, `zip`, `country`, `comment`, `account`, `balance`, `image`, `date_time`, `status`) VALUES
-(5, 'Ayodeji', 'Akinade', 'business2016@gmail.com', '08033527716', 'FCE', 'Abeokuta', 'Ikeja', 'Lagos', '110001', 'US', 'Application for loan', '0034445657', '1451.00', 'img/user3.png', '2018-01-06 18:26:11', 'Pending');
+(5, 'Ayodeji', 'Akinade', 'business2016@gmail.com', '08033527716', 'FCE', 'Abeokuta', 'Ikeja', 'Lagos', '110001', 'US', 'Application for loan', '0034445657', '1451.00', 'img/user3.png', '2018-01-06 18:26:11', 'Pending'),
+(6, 'isaac', 'Natukwasa', 'isaacnatu@gmail.com', '0765654321', 'Kalerwe', '', 'Kampala', 'Central', '256', 'UG', '', '0138976604', '0.0', 'img/isp-removebg-preview.png', '2023-12-28 09:02:29', 'Completed');
 
 -- --------------------------------------------------------
 
@@ -193,8 +189,8 @@ INSERT INTO `borrowers` (`id`, `fname`, `lname`, `email`, `phone`, `addrs1`, `ad
 -- Table structure for table `collateral`
 --
 
-CREATE TABLE IF NOT EXISTS `collateral` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `collateral` (
+  `id` int(20) NOT NULL,
   `idm` varchar(200) NOT NULL,
   `tid` varchar(200) NOT NULL,
   `name` varchar(200) NOT NULL,
@@ -205,9 +201,8 @@ CREATE TABLE IF NOT EXISTS `collateral` (
   `estimated_price` varchar(200) NOT NULL,
   `proof_of_ownership` text NOT NULL,
   `cimage` text NOT NULL,
-  `observation` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `observation` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `collateral`
@@ -224,13 +219,12 @@ INSERT INTO `collateral` (`id`, `idm`, `tid`, `name`, `type_of_collateral`, `mod
 -- Table structure for table `countries`
 --
 
-CREATE TABLE IF NOT EXISTS `countries` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `countries` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL DEFAULT '',
   `alpha_2` varchar(200) NOT NULL DEFAULT '',
-  `alpha_3` varchar(200) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=250 ;
+  `alpha_3` varchar(200) NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `countries`
@@ -291,7 +285,7 @@ INSERT INTO `countries` (`id`, `name`, `alpha_2`, `alpha_3`) VALUES
 (52, 'Congo, The Democratic Republic of the', 'cd', 'cod'),
 (53, 'Cook Islands', 'ck', 'cok'),
 (54, 'Costa Rica', 'cr', 'cri'),
-(55, 'Cote d''Ivoire', 'ci', 'civ'),
+(55, 'Cote d\'Ivoire', 'ci', 'civ'),
 (56, 'Croatia', 'hr', 'hrv'),
 (57, 'Cuba', 'cu', 'cub'),
 (58, 'Curacao', 'cw', 'cuw'),
@@ -354,11 +348,11 @@ INSERT INTO `countries` (`id`, `name`, `alpha_2`, `alpha_3`) VALUES
 (115, 'Kazakhstan', 'kz', 'kaz'),
 (116, 'Kenya', 'ke', 'ken'),
 (117, 'Kiribati', 'ki', 'kir'),
-(118, 'Korea, Democratic People''s Republic of', 'kp', 'prk'),
+(118, 'Korea, Democratic People\'s Republic of', 'kp', 'prk'),
 (119, 'Korea, Republic of', 'kr', 'kor'),
 (120, 'Kuwait', 'kw', 'kwt'),
 (121, 'Kyrgyzstan', 'kg', 'kgz'),
-(122, 'Lao People''s Democratic Republic', 'la', 'lao'),
+(122, 'Lao People\'s Democratic Republic', 'la', 'lao'),
 (123, 'Latvia', 'lv', 'lva'),
 (124, 'Lebanon', 'lb', 'lbn'),
 (125, 'Lesotho', 'ls', 'lso'),
@@ -493,16 +487,15 @@ INSERT INTO `countries` (`id`, `name`, `alpha_2`, `alpha_3`) VALUES
 -- Table structure for table `emp_permission`
 --
 
-CREATE TABLE IF NOT EXISTS `emp_permission` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `emp_permission` (
+  `id` int(20) NOT NULL,
   `tid` varchar(200) NOT NULL,
   `module_name` varchar(350) NOT NULL,
   `pcreate` varchar(20) NOT NULL,
   `pread` varchar(20) NOT NULL,
   `pupdate` varchar(20) NOT NULL,
-  `pdelete` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
+  `pdelete` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `emp_permission`
@@ -538,11 +531,10 @@ INSERT INTO `emp_permission` (`id`, `tid`, `module_name`, `pcreate`, `pread`, `p
 -- Table structure for table `emp_role`
 --
 
-CREATE TABLE IF NOT EXISTS `emp_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+CREATE TABLE `emp_role` (
+  `id` int(11) NOT NULL,
+  `role` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -550,15 +542,14 @@ CREATE TABLE IF NOT EXISTS `emp_role` (
 -- Table structure for table `etemplates`
 --
 
-CREATE TABLE IF NOT EXISTS `etemplates` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `etemplates` (
+  `id` int(11) NOT NULL,
   `sender` varchar(200) NOT NULL,
   `receiver_email` varchar(350) NOT NULL,
   `subject` varchar(350) NOT NULL,
   `msg` text NOT NULL,
-  `time_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `time_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -566,12 +557,11 @@ CREATE TABLE IF NOT EXISTS `etemplates` (
 -- Table structure for table `faqs`
 --
 
-CREATE TABLE IF NOT EXISTS `faqs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `faqs` (
+  `id` int(11) NOT NULL,
   `topic` text NOT NULL,
-  `content` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `content` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `faqs`
@@ -586,14 +576,13 @@ INSERT INTO `faqs` (`id`, `topic`, `content`) VALUES
 -- Table structure for table `fin_info`
 --
 
-CREATE TABLE IF NOT EXISTS `fin_info` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `fin_info` (
+  `id` int(20) NOT NULL,
   `get_id` varchar(200) NOT NULL,
   `tid` varchar(200) NOT NULL,
   `occupation` text NOT NULL,
-  `mincome` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  `mincome` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fin_info`
@@ -613,8 +602,8 @@ INSERT INTO `fin_info` (`id`, `get_id`, `tid`, `occupation`, `mincome`) VALUES
 -- Table structure for table `footer`
 --
 
-CREATE TABLE IF NOT EXISTS `footer` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `footer` (
+  `id` int(11) NOT NULL,
   `email` varchar(200) NOT NULL,
   `pho` varchar(200) NOT NULL,
   `face` varchar(200) NOT NULL,
@@ -628,9 +617,8 @@ CREATE TABLE IF NOT EXISTS `footer` (
   `apply` text NOT NULL,
   `mission` text NOT NULL,
   `objective` text NOT NULL,
-  `map` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `map` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `footer`
@@ -645,11 +633,10 @@ INSERT INTO `footer` (`id`, `email`, `pho`, `face`, `webs`, `conh`, `twi`, `gplu
 -- Table structure for table `hiw`
 --
 
-CREATE TABLE IF NOT EXISTS `hiw` (
-  `hid` int(11) NOT NULL AUTO_INCREMENT,
-  `hiw` text NOT NULL,
-  PRIMARY KEY (`hid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+CREATE TABLE `hiw` (
+  `hid` int(11) NOT NULL,
+  `hiw` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `hiw`
@@ -664,8 +651,8 @@ INSERT INTO `hiw` (`hid`, `hiw`) VALUES
 -- Table structure for table `loan_info`
 --
 
-CREATE TABLE IF NOT EXISTS `loan_info` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `loan_info` (
+  `id` int(20) NOT NULL,
   `borrower` varchar(200) NOT NULL,
   `baccount` varchar(200) NOT NULL,
   `desc` text NOT NULL,
@@ -683,9 +670,8 @@ CREATE TABLE IF NOT EXISTS `loan_info` (
   `amount_topay` varchar(200) NOT NULL,
   `teller` varchar(200) NOT NULL,
   `remark` text NOT NULL,
-  `upstatus` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+  `upstatus` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loan_info`
@@ -700,16 +686,15 @@ INSERT INTO `loan_info` (`id`, `borrower`, `baccount`, `desc`, `amount`, `date_r
 -- Table structure for table `message`
 --
 
-CREATE TABLE IF NOT EXISTS `message` (
-  `id` int(200) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `message` (
+  `id` int(200) NOT NULL,
   `sender_id` varchar(200) NOT NULL,
   `sender_name` varchar(200) NOT NULL,
   `msg_to` varchar(200) NOT NULL,
   `subject` varchar(300) NOT NULL,
   `message` text NOT NULL,
-  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `date_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `message`
@@ -726,16 +711,15 @@ INSERT INTO `message` (`id`, `sender_id`, `sender_name`, `msg_to`, `subject`, `m
 -- Table structure for table `mywallet`
 --
 
-CREATE TABLE IF NOT EXISTS `mywallet` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `mywallet` (
+  `id` int(11) NOT NULL,
   `tid` varchar(200) NOT NULL,
   `t_to` varchar(200) NOT NULL,
   `Amount` varchar(200) NOT NULL,
   `Desc` varchar(200) NOT NULL,
   `wtype` varchar(200) NOT NULL,
-  `tdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=69 ;
+  `tdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mywallet`
@@ -761,8 +745,8 @@ INSERT INTO `mywallet` (`id`, `tid`, `t_to`, `Amount`, `Desc`, `wtype`, `tdate`)
 -- Table structure for table `payments`
 --
 
-CREATE TABLE IF NOT EXISTS `payments` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `payments` (
+  `id` int(20) NOT NULL,
   `tid` varchar(200) NOT NULL,
   `account` varchar(200) NOT NULL,
   `account_no` varchar(200) NOT NULL,
@@ -770,9 +754,8 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `loan` varchar(200) NOT NULL,
   `pay_date` varchar(200) NOT NULL,
   `amount_to_pay` varchar(200) NOT NULL,
-  `remarks` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `remarks` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `payments`
@@ -787,17 +770,16 @@ INSERT INTO `payments` (`id`, `tid`, `account`, `account_no`, `customer`, `loan`
 -- Table structure for table `payment_schedule`
 --
 
-CREATE TABLE IF NOT EXISTS `payment_schedule` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `payment_schedule` (
+  `id` int(20) NOT NULL,
   `idm` varchar(200) NOT NULL,
   `tid` varchar(200) NOT NULL,
   `term` varchar(200) NOT NULL,
   `day` varchar(200) NOT NULL,
   `schedule` varchar(200) NOT NULL,
   `interest` varchar(200) NOT NULL,
-  `penalty` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+  `penalty` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `payment_schedule`
@@ -812,16 +794,15 @@ INSERT INTO `payment_schedule` (`id`, `idm`, `tid`, `term`, `day`, `schedule`, `
 -- Table structure for table `pay_schedule`
 --
 
-CREATE TABLE IF NOT EXISTS `pay_schedule` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pay_schedule` (
+  `id` int(20) NOT NULL,
   `get_id` varchar(200) NOT NULL,
   `tid` varchar(200) NOT NULL,
   `schedule` varchar(200) NOT NULL,
   `balance` varchar(200) NOT NULL,
   `interest` varchar(200) NOT NULL,
-  `payment` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  `payment` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pay_schedule`
@@ -836,15 +817,14 @@ INSERT INTO `pay_schedule` (`id`, `get_id`, `tid`, `schedule`, `balance`, `inter
 -- Table structure for table `sms`
 --
 
-CREATE TABLE IF NOT EXISTS `sms` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sms` (
+  `id` int(11) NOT NULL,
   `sms_gateway` text NOT NULL,
   `username` text NOT NULL,
   `password` text NOT NULL,
   `api` text NOT NULL,
-  `status` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `status` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sms`
@@ -859,8 +839,8 @@ INSERT INTO `sms` (`id`, `sms_gateway`, `username`, `password`, `api`, `status`)
 -- Table structure for table `systemset`
 --
 
-CREATE TABLE IF NOT EXISTS `systemset` (
-  `sysid` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `systemset` (
+  `sysid` int(11) NOT NULL,
   `title` varchar(200) NOT NULL,
   `name` varchar(200) NOT NULL,
   `footer` text NOT NULL,
@@ -875,9 +855,8 @@ CREATE TABLE IF NOT EXISTS `systemset` (
   `map` text NOT NULL,
   `stamp` varchar(350) NOT NULL,
   `timezone` text NOT NULL,
-  `sms_charges` varchar(200) NOT NULL,
-  PRIMARY KEY (`sysid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `sms_charges` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `systemset`
@@ -892,8 +871,8 @@ INSERT INTO `systemset` (`sysid`, `title`, `name`, `footer`, `abb`, `fax`, `curr
 -- Table structure for table `transaction`
 --
 
-CREATE TABLE IF NOT EXISTS `transaction` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `transaction` (
+  `id` int(20) NOT NULL,
   `txid` varchar(200) NOT NULL,
   `t_type` varchar(200) NOT NULL COMMENT 'Deposit OR Withdraw',
   `acctno` varchar(200) NOT NULL,
@@ -902,9 +881,8 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   `email` varchar(300) NOT NULL,
   `phone` varchar(200) NOT NULL,
   `amount` varchar(200) NOT NULL,
-  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+  `date_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaction`
@@ -937,12 +915,11 @@ INSERT INTO `transaction` (`id`, `txid`, `t_type`, `acctno`, `fn`, `ln`, `email`
 -- Table structure for table `twallet`
 --
 
-CREATE TABLE IF NOT EXISTS `twallet` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `twallet` (
+  `id` int(20) NOT NULL,
   `tid` varchar(200) NOT NULL,
-  `Total` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+  `Total` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `twallet`
@@ -958,8 +935,8 @@ INSERT INTO `twallet` (`id`, `tid`, `Total`) VALUES
 -- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
-  `userid` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user` (
+  `userid` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
   `phone` varchar(200) NOT NULL,
@@ -974,9 +951,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(200) NOT NULL,
   `id` varchar(200) NOT NULL,
   `image` text NOT NULL,
-  `role` varchar(200) NOT NULL,
-  PRIMARY KEY (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=483 ;
+  `role` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -984,7 +960,340 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`userid`, `name`, `email`, `phone`, `addr1`, `addr2`, `city`, `state`, `zip`, `country`, `comment`, `username`, `password`, `id`, `image`, `role`) VALUES
 (467, 'au JJJ', 'at@g.com', '+2334857757769', 'Ghana                    ', 'Ghana										', 'Acra', 'Acra', '23450', 'US', '  Good Â  Â  Â Â Â  Â Â Â  Â Â Â  Â Â Â  Â  Â  Â Â Â  Â Â Â  Â Â Â  Â Â Â  Â  Â ', 'at', 'YXQ=', 'Cryptos?rid=782752', 'img/ac_logo.png', ''),
-(482, 'Admin', 'admin@admin.com', '08101750845', 'address1', 'address2', 'city', 'state', 'zip', 'US', 'comment', 'admin', 'YWRtaW4=', 'Loan=21319580', 'img/bitcoin_3.png', 'admin');
+(482, 'Admin', 'admin@admin.com', '08101750845', 'address1', 'address2', 'city', 'state', 'zip', 'US', 'comment', 'admin', 'YWRtaW4=', 'Loan=21319580', 'img/bitcoin_3.png', 'admin'),
+(483, 'laban Kulubasi', 'labankulubasi@gmail.com', '0786509435', 'kikaaya', '', 'Kampala', 'Central', '256', 'UG', '', 'kulubasi', 'U3VsdWxhYmEuMTk5MDE5', 'Loan=86891498', 'img/al.jpg', 'admin');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `aboutus`
+--
+ALTER TABLE `aboutus`
+  ADD PRIMARY KEY (`abid`);
+
+--
+-- Indexes for table `additional_fees`
+--
+ALTER TABLE `additional_fees`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `attachment`
+--
+ALTER TABLE `attachment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `backup`
+--
+ALTER TABLE `backup`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `banner`
+--
+ALTER TABLE `banner`
+  ADD PRIMARY KEY (`banaid`);
+
+--
+-- Indexes for table `battachment`
+--
+ALTER TABLE `battachment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `borrowers`
+--
+ALTER TABLE `borrowers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `collateral`
+--
+ALTER TABLE `collateral`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `countries`
+--
+ALTER TABLE `countries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `emp_permission`
+--
+ALTER TABLE `emp_permission`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `emp_role`
+--
+ALTER TABLE `emp_role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `etemplates`
+--
+ALTER TABLE `etemplates`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `faqs`
+--
+ALTER TABLE `faqs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fin_info`
+--
+ALTER TABLE `fin_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `footer`
+--
+ALTER TABLE `footer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hiw`
+--
+ALTER TABLE `hiw`
+  ADD PRIMARY KEY (`hid`);
+
+--
+-- Indexes for table `loan_info`
+--
+ALTER TABLE `loan_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mywallet`
+--
+ALTER TABLE `mywallet`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payment_schedule`
+--
+ALTER TABLE `payment_schedule`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pay_schedule`
+--
+ALTER TABLE `pay_schedule`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sms`
+--
+ALTER TABLE `sms`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `systemset`
+--
+ALTER TABLE `systemset`
+  ADD PRIMARY KEY (`sysid`);
+
+--
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `twallet`
+--
+ALTER TABLE `twallet`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`userid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `aboutus`
+--
+ALTER TABLE `aboutus`
+  MODIFY `abid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `additional_fees`
+--
+ALTER TABLE `additional_fees`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `attachment`
+--
+ALTER TABLE `attachment`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `backup`
+--
+ALTER TABLE `backup`
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `banner`
+--
+ALTER TABLE `banner`
+  MODIFY `banaid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `battachment`
+--
+ALTER TABLE `battachment`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `borrowers`
+--
+ALTER TABLE `borrowers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `collateral`
+--
+ALTER TABLE `collateral`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `countries`
+--
+ALTER TABLE `countries`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
+
+--
+-- AUTO_INCREMENT for table `emp_permission`
+--
+ALTER TABLE `emp_permission`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
+--
+-- AUTO_INCREMENT for table `emp_role`
+--
+ALTER TABLE `emp_role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `etemplates`
+--
+ALTER TABLE `etemplates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `faqs`
+--
+ALTER TABLE `faqs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `fin_info`
+--
+ALTER TABLE `fin_info`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `footer`
+--
+ALTER TABLE `footer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `hiw`
+--
+ALTER TABLE `hiw`
+  MODIFY `hid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `loan_info`
+--
+ALTER TABLE `loan_info`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `mywallet`
+--
+ALTER TABLE `mywallet`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `payment_schedule`
+--
+ALTER TABLE `payment_schedule`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `pay_schedule`
+--
+ALTER TABLE `pay_schedule`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `sms`
+--
+ALTER TABLE `sms`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `systemset`
+--
+ALTER TABLE `systemset`
+  MODIFY `sysid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `transaction`
+--
+ALTER TABLE `transaction`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `twallet`
+--
+ALTER TABLE `twallet`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=484;
 
 DELIMITER $$
 --
@@ -993,6 +1302,7 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` EVENT `update_profit` ON SCHEDULE EVERY 1 DAY STARTS '2017-03-08 20:45:36' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE ph_list SET Percentage = '727.2' WHERE tracking_id = 'Cryptos?rid=782752'$$
 
 DELIMITER ;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
