@@ -92,7 +92,7 @@ echo "<div class='alert alert-success'>Borrower Information Created Successfully
                   <label for="" class="col-sm-2 control-label" style="color:#009900">Account Number</label>
                   <div class="col-sm-10">
 <?php
-$account = '192030'.rand(100, 999);
+$account = '011200005404'.rand(1,1);
 ?>
                   <input name="account" type="text" class="form-control" value="<?php echo $account; ?>" placeholder="Account Number" readonly>
                   </div>

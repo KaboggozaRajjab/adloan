@@ -80,9 +80,9 @@ else{
                   <label for="" class="col-sm-2 control-label" style="color:#009900">Account Number</label>
                   <div class="col-sm-10">
 <?php
-$account = '19012001'.rand(10,10);
+$account = '011200005404'.rand(1,1);
 ?>
-                  <input name="account" type="text" class="form-control" value="<?php echo $account; ?>" placeholder="Account Number">
+                  <input name="account" type="text" class="form-control" value="<?php echo $account; ?>" placeholder="Account Number" readonly>
                   </div>
                   </div>
 			
